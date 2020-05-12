@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_firebase_login/blocs/simple_bloc_delegate.dart';
+import 'package:flutter_bloc_firebase_login/presentation/android/home/home_screen.dart';
+import 'package:flutter_bloc_firebase_login/presentation/android/login/login_screen.dart';
+import 'package:flutter_bloc_firebase_login/presentation/android/splash/splash_screen.dart';
 import 'blocs/authentication_bloc/authentication_bloc.dart';
+import 'blocs/simple_bloc_delegate.dart';
 import 'data/Repository/user_repository.dart';
-import 'presentation/android/home_screen/home_screen.dart';
-import 'presentation/android/splash_screen/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,8 +14,8 @@ void main() {
   final UserRepository userRepository = UserRepository();
   runApp(
     BlocProvider(
-      create: (context) =>
-          AuthenticationBloc(userRepository: userRepository)..add(AppStarted()),
+      create: (context) => AuthenticationBloc(userRepository: userRepository)
+        ..add(AppStarted()),
       child: App(userRepository: userRepository),
     ),
   );
@@ -36,10 +37,12 @@ class App extends StatelessWidget {
           if (state is Uninitialized) {
             return SplashScreen();
           }
+          if (state is Unauthenticated) {
+            return LoginScreen(userRepository: _userRepository);
+          }
           if (state is Authenticated) {
             return HomeScreen(name: state.displayName);
           }
-          return Container();
         },
       ),
     );

@@ -1,12 +1,9 @@
-import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc_firebase_login/blocs/validators.dart';
 import 'package:flutter_bloc_firebase_login/data/Repository/user_repository.dart';
 import 'package:meta/meta.dart';
 import 'dart:async';
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 
 part 'login_event.dart';

@@ -1,4 +1,4 @@
-import 'package:meta/meta.dart';
+part of 'register_bloc.dart';
 
 @immutable
 class RegisterState {

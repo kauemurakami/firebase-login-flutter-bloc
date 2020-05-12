@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_firebase_login/blocs/login_bloc/login_bloc.dart';
 import 'package:flutter_bloc_firebase_login/data/Repository/user_repository.dart';
 
+import 'components/login_form.dart';
+
 class LoginScreen extends StatelessWidget {
   final UserRepository _userRepository;
 
