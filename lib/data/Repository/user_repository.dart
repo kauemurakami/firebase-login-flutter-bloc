@@ -32,30 +32,28 @@ class UserRepository {
 
   //método que permita aos usuários criar uma conta se optarem por não usar o Login do Google.
   Future<void> signUp({String email, String password}) async {
-  return await _firebaseAuth.createUserWithEmailAndPassword(
-    email: email,
-    password: password,
-  );
-}
+    return await _firebaseAuth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+  }
 
 //método para que possamos oferecer aos usuários a opção de efetuar logout e limpar suas informações de perfil do dispositivo.
-Future<void> signOut() async {
-  return Future.wait([
-    _firebaseAuth.signOut(),
-    _googleSignIn.signOut(),
-  ]);
-}
+  Future<void> signOut() async {
+    return Future.wait([
+      _firebaseAuth.signOut(),
+      _googleSignIn.signOut(),
+    ]);
+  }
 
 //nos permitir verificar se um usuário já está autenticado e recuperar suas informações.
-Future<bool> isSignedIn() async {
-  final currentUser = await _firebaseAuth.currentUser();
-  return currentUser != null;
-}
+  Future<bool> isSignedIn() async {
+    final currentUser = await _firebaseAuth.currentUser();
+    return currentUser != null;
+  }
+
 //retornando apenas o endereço de e-mail do usuário atual
-Future<String> getUser() async {
-  return (await _firebaseAuth.currentUser()).email;
-}
-
-
-
+  Future<String> getUser() async {
+    return (await _firebaseAuth.currentUser()).email;
+  }
 }
